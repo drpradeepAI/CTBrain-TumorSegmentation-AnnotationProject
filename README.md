@@ -1,136 +1,130 @@
-# 🧠 MRI Brain Tumor Segmentation — Annotation Project  
+# 🧠 CT Brain Tumor Segmentation — Annotation Project
 
-A curated dataset of **50 MRI brain scans** annotated for **tumor segmentation** using **CVAT**.  
-This project demonstrates a structured **medical computer vision annotation pipeline** — ready for **AI model training, validation, and educational research**.
+A curated dataset of **50 CT brain scans** annotated for **tumor segmentation** using **CVAT**.  
+This project demonstrates a structured medical computer vision annotation pipeline — ready for AI model training, validation, and healthcare research.
 
 ---
 
 ## 📘 Overview
 
-| **Attribute** | **Description** |
-|----------------|----------------|
-| **Modality** | MRI (Magnetic Resonance Imaging) |
+| Attribute | Description |
+|------------|--------------|
+| **Modality** | CT (Computed Tomography) |
 | **Region of Interest** | Brain |
-| **Condition** | Brain Tumor (normal and abnormal cases included) |
-| **Dataset Size** | 50 MRI images |
+| **Condition** | Tumor / Neoplastic lesion |
+| **Dataset Size** | 50 CT slices |
 | **Annotation Tool** | [CVAT – Computer Vision Annotation Tool](https://cvat.org/) |
-| **Annotation Type** | Polygonal + Mask Segmentation |
-| **Segmentation Classes** | `tumor`, `background` |
-| **Export Formats** | COCO JSON, Pascal VOC XML, PNG Masks |
-| **Resolution** | 512 × 512 px |
-| **Color Mode** | Grayscale |
-| **Purpose** | AI model development, benchmarking, and education |
+| **Annotation Type** | Polygonal / Mask Segmentation |
+| **Export Formats** | COCO JSON, Pascal VOC XML, Segmentation PNG |
+| **Task Type** | Semantic Segmentation |
+| **Purpose** | Medical image segmentation training, validation, and benchmarking |
+
+This dataset provides both **polygonal and pixel-level segmentation** annotations for brain tumor detection, formatted for interoperability across deep learning frameworks.
 
 ---
 
 ## 📁 Folder Structure
 
-50_mri_brain_tumor_annotation_project/
-├── raw_data/ # Original MRI brain scans (unannotated)
-├── annotated_data/ # Labeled annotations (COCO, YOLO, XML, PNG)
-├── metadata/ # Schema files, mappings, and dataset info
-├── screenshots/ # Workflow documentation (PDFs, PNGs)
-└── README.md # Current documentation file
+50_ct_brain_tumor_annotation_project/
+├── annotated_data/ # COCO, VOC, and mask exports from CVAT
+│ ├── COCO/
+│ ├── VOC/
+│ └── segmentation_masks/
+│
+├── raw_data/ # Original 50 CT brain slices (.png)
+├── metadata/ # Dataset descriptors and mapping files
+├── screenshots/ # Visual documentation (proofs and exports)
+└── README.md # This documentation file
 
 ---
 
-## 🩺 Folder Descriptions
+## 🧩 Annotation Schema
 
-### 🧠 `raw_data/`
-Contains 50 unannotated MRI brain scans — both normal and tumor-affected cases.  
-➡️ [View Raw Data](./raw_data)
+| Class ID | Label | Description |
+|-----------|--------|-------------|
+| 0 | `background` | Non-tumor tissue or cranial structures |
+| 1 | `tumor` | Visible tumor or abnormal lesion region |
 
----
-
-### 🎯 `annotated_data/`
-Includes multi-format annotations compatible with major AI frameworks:  
-- **COCO JSON** → PyTorch, Detectron2  
-- **YOLO TXT** → YOLOv5–YOLOv8  
-- **CVAT XML** → Re-importable into CVAT  
-- **PNG Masks** → Pixel-wise tumor segmentation maps  
-
-➡️ [View Annotated Data](./annotated_data)
+Each exported format (COCO, VOC, Mask PNG) maintains a **unified class mapping** for consistent downstream model integration.
 
 ---
 
-### 🧾 `metadata/`
-Holds dataset-level descriptors, mappings, and placeholders for schema versioning.  
-➡️ [View Metadata](./metadata)
+## ⚙️ Dataset Workflow Summary
 
----
-
-### 🖼️ `screenshots/`
-Contains project documentation — raw data samples, annotations, and workflow visuals.  
-➡️ [View Screenshots](./screenshots)
-
----
-
-## ⚙️ Data Workflow Summary
-
-| **Step** | **Description** |
-|-----------|----------------|
-| **1. Data Preparation** | MRI brain scans curated and preprocessed for consistency |
-| **2. Annotation (CVAT)** | Manual polygon + mask-based segmentation |
-| **3. Exporting Formats** | COCO JSON, Pascal VOC XML, and PNG masks |
-| **4. Documentation** | Screenshots and workflow visual proof |
-| **5. Validation** | Visual QA and format verification |
+| Step | Description |
+|------|-------------|
+| **1. Raw Data Preparation** | 50 CT scans curated, standardized to 512×512 resolution |
+| **2. Annotation in CVAT** | Manual segmentation using polygon and brush tools |
+| **3. Multi-format Export** | Data exported in COCO, VOC, and PNG mask formats |
+| **4. Visual Proofing** | Annotation previews saved as screenshots and PDFs |
+| **5. Documentation** | Metadata and labeling schema organized for reproducibility |
 
 ---
 
 ## 🧠 Applications
 
-- Tumor segmentation and boundary localization  
-- AI model training with MONAI, U-Net, and DeepLab  
-- Medical imaging workflow demonstrations  
-- Freelance dataset showcase and medical AI portfolio projects  
-- Educational use in annotation and segmentation tutorials  
+- Training segmentation models (U-Net, DeepLabV3+, Mask R-CNN)  
+- Clinical image annotation workflow demonstration  
+- Dataset structuring and cross-format conversion testing  
+- Educational or research AI projects in neuroimaging  
 
 ---
 
 ## 🧰 Recommended Tools
 
-| **Task** | **Recommended Tools** |
-|-----------|----------------------|
-| **Annotation** | CVAT, ITK-SNAP, 3D Slicer |
-| **Visualization** | FiftyOne, matplotlib, Roboflow |
-| **Model Training** | MONAI, U-Net, Detectron2 |
-| **Evaluation Metrics** | Dice, IoU, Hausdorff Distance |
+| Task | Tools |
+|------|--------|
+| Annotation | CVAT |
+| Visualization | FiftyOne, OpenCV, matplotlib |
+| Model Training | MONAI, PyTorch Lightning, TensorFlow |
+| Evaluation | Dice, IoU, Precision, Recall metrics |
 
 ---
 
-## 🧩 Compatibility
+## 🔗 Cross-References
 
-| **Framework** | **Supported Format** | **Folder** |
-|----------------|----------------------|-------------|
-| **PyTorch / Detectron2** | COCO JSON | `annotated_data/COCO` |
-| **YOLOv5–YOLOv8** | YOLO TXT | `annotated_data/YOLO` |
-| **CVAT** | XML | `annotated_data/cvat_xml` |
-| **MONAI / U-Net** | PNG Masks | `annotated_data/segmentation_masks` |
+| Folder | Description |
+|---------|-------------|
+| [`raw_data/`](./raw_data) | Original unannotated CT images |
+| [`annotated_data/`](./annotated_data) | Segmentation data in COCO, VOC, and PNG formats |
+| [`metadata/`](./metadata) | Dataset-level descriptors and schema info |
+| [`screenshots/`](./screenshots) | Annotation proof and export verification visuals |
+
+---
+
+## 📸 Screenshot Previews
+
+Annotation documentation includes:
+- `01_project_overview.pdf`  
+- `02_raw_data_preview.pdf`  
+- `03_annotated_sample.pdf`  
+- `04_export_formats_summary.pdf`
+
+These files visually illustrate dataset creation and segmentation consistency.
 
 ---
 
 ## 📜 License
 
 Licensed under the **MIT License**.  
-© 2025 **Dr. Pradeep Shanmugam** — *MedDataForAI (Udyam Registered MSME, Government of India)*
+© 2025 Dr. Pradeep Shanmugam — *MedDataForAI (Udyam Registered MSME, Government of India)*  
 
 ---
 
-## 🔖 Citation (APA Style)
+## 💡 Citation (APA Style)
 
-> **Shanmugam, P.** (2025). *MRI Brain Tumor Segmentation — Medical AI Data Annotation Project (v1.0).*  
-> MedDataForAI (Udyam Registered MSME, Government of India).  
-> Available at: [https://github.com/drpradeepAI/MRIBrain-TumorSegmentation-AnnotationProject](https://github.com/drpradeepAI/MRIBrain-TumorSegmentation-AnnotationProject)
+Shanmugam, P. (2025). *CT Brain Tumor Segmentation — Medical AI Data Annotation Project.*  
+Available at: [https://github.com/drpradeepAI/CTBrainTumorSegmentation-AnnotationProject](https://github.com/drpradeepAI/CTBrainTumorSegmentation-AnnotationProject)
 
 ---
 
 ## 🧾 Version Control
 
-| **Version** | **Date** | **Description** |
-|--------------|-----------|----------------|
-| **1.0** | 2025-11 | Initial release with 50 MRI brain images and multi-format annotations |
-| **1.1 (Planned)** | 2026-Q1 | Add extended metadata and refined COCO-style masks |
+| Version | Date | Description |
+|----------|------|-------------|
+| **v1.0** | Nov 2025 | Initial release – 50 annotated CT brain scans (COCO, VOC, Mask PNG) |
+| **v1.1 (Planned)** | 2026-Q1 | Addition of dataset cards and auto-metadata exports |
 
 ---
 
-✨ *A MedDataForAI project — structured for research reproducibility, educational clarity, and freelance presentation.*
+⭐ *If this project helps your research or workflow, please consider starring the repository!*
